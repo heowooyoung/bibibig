@@ -22,16 +22,16 @@ for _ in range(student_cnt):
     else:
         switches[idx] ^= 1
         side = 1
-
+        # 왼쪽은 0보다 작으면 안되고, 오른쪽은 N보다 크면 안됨
         while 0 <= (idx - side) and (idx + side) < N:
-            left = switches[idx-side]
-            right = switches[idx+side]
+            left = switches[idx - side]
+            right = switches[idx + side]
 
             if left != right:
                 break
             else:
                 switches[idx - side] ^= 1
-                switches[idx+side] ^= 1
+                switches[idx + side] ^= 1
                 side += 1
 
 for part_no in range(N // 20 + 1):
