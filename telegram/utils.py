@@ -14,3 +14,7 @@ def send_message(msg, sender_id):
 
 # if __name__ == '__main__':
 #     send_message('안녕', '765946187')
+
+'''
+https://api.telegram.org/bot5894130618:AAGJznYZbowFq1ZrsOj4oWpR7NRVO7qbO80/setWebhook?url=eduneo.pythonanywhere.com
+'''

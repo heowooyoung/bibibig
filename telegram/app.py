@@ -21,5 +21,5 @@ def home():
 
     return 'Hello Server!'
 
-
-app.run(port=80, debug=True)
+if __name__ == '__main__':
+    app.run(port=80, debug=True)
