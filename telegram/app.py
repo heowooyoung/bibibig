@@ -1,44 +1,25 @@
-import requests
-import random
+from flask import Flask, request
+import random 
+from utils import send_message
 
-token = '5894130618:AAGJznYZbowFq1ZrsOj4oWpR7NRVO7qbO80'
-me = '765946187'
+app = Flask('hi')
 
-
-
-while True:
-    from time import sleep
-    sleep(5)
-    update_url = f'https://api.telegram.org/bot{token}/getUpdates'
-    response = requests.get(update_url).json()
-    input_message = response['result'][-1]['message']['text']
-    chat_id = response['result'][-1]['message']['from']['id']
-    if input_message == '로또':
-        output_message = random.sample(range(1, 46), 6)
-    elif input_message == '안녕':
-        output_message = '안녕하세요'
+@app.route('/', methods=['POST'])
+def home():
+    # 서버로서 우리가 받은 요청 => Server
+    data = request.json
+    input_message = data['message']['text']
+    sender_id = data['message']['from']['id']
+    
+    if input_message == '안녕':
+        send_message('안녕하세요', sender_id)
+    elif input_message == '로또':
+        lotto = random.sample(range(1, 46), 6)
+        send_message(lotto, sender_id)
     else:
-        output_message = '처리할수 없습니다 :('
+        send_message('안녕 로또 중에 하나만 입력하세요.', sender_id)
 
-    send_url =f'https://api.telegram.org/bot{token}/sendMessage?chat_id={chat_id}&text={output_message}'
-    # 서버에 요청(URL)을 보낸다.
-    requests.get(send_url)
+    return 'Hello Server!'
 
 
-
-
-# url = f'https://api.telegram.org/bot{token}/sendMessage?chat_id={me}&text={message}'
-
-# requests.get(url)
-
-'''
-https://api.telegram.org
-/bot5894130618:AAGJznYZbowFq1ZrsOj4oWpR7NRVO7qbO80
-/sendMessage
-?
-chat_id=765946187
-&
-text=hi
-
-https://api.telegram.org/bot5894130618:AAGJznYZbowFq1ZrsOj4oWpR7NRVO7qbO80/getUpdates
-'''
+app.run(port=80, debug=True)
