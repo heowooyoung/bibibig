@@ -9,20 +9,21 @@
 <body>
     <h1>Form</h1>
     <!-- form => block -->
-    <form action="">
+    <form action="목적지(URL)" method="POST">
         <!-- input => inline -->
         <div>
+            <!-- label 은 input의 id와 맞춰야 한다. -->
             <label for="my-name">이름:</label>
             <input id="my-name" type="text" required autofocus>
         </div>
         <div>
             <label for="my-email">email: </label>
-            <input id="my-email" type="email" placeholder="example@gmail.com">
+            <input id="my-email" type="email" placeholder="example@gmail.com" disabled>
         </div>
-        <div>
+        <div class="input-div">
             <input type="password">
         </div>
-        <div>
+        <div class="input-div">
             <label for="age">나이:</label>
             <input id="age" type="number" value="100">
         </div>
