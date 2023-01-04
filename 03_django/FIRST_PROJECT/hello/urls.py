@@ -7,6 +7,8 @@ urlpatterns = [
     # FULL URL
     # hello/world/ => views.py / hello_world
     path('world/', views.hello_world),
-    # hello/lunch/ => 
+    # hello/lunch/ => views.lunch
     path('lunch/', views.lunch),
+    # hello/lotto/ => views.lotto
+    path('lotto/', views.lotto),
 ]
